@@ -9,7 +9,7 @@ class MyController extends Controller
     //
     public function index()
     {
-        return view("layouts.front-base");
+        return view("front-page.index");
     }
 
     public function test()

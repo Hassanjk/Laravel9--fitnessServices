@@ -1,6 +1,6 @@
 <?php
-
 use App\Http\Controllers\MyController;
+use App\Http\Controllers\AdminPanel\MyController as MyAdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +19,13 @@ Route::get('/', function () {
 });
 // this is the default index page
 Route::get('/', [MyController::class, 'index'])->name('home');
+
+
 // this is the rout-controller-view
 Route::get('/Param/{$p}', [MyController::class, 'test'])->name('test');
+
+// my AdminPanle route
+Route::get('/admin', [MyAdminController::class, 'index'])->name('admin');
 
 
 Route::middleware([
