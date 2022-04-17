@@ -25,7 +25,23 @@ Route::get('/', [MyController::class, 'index'])->name('home');
 Route::get('/Param/{$p}', [MyController::class, 'test'])->name('test');
 
 // my AdminPanle route
+
 Route::get('/admin', [MyAdminController::class, 'index'])->name('admin');
+
+// my AdminPanle category-list
+Route::get('/admin/category', [App\Http\Controllers\AdminPanel\CategoryController::class, 'index'])->name('category');
+
+// my AdminPanle create
+Route::get('/admin/create', [App\Http\Controllers\AdminPanel\CategoryController::class, 'create'])->name('create');
+
+// my AdminPanle store
+Route::get('/admin/store', [App\Http\Controllers\AdminPanel\CategoryController::class, 'store'])->name('store');
+
+// my AdminPanle update
+Route::get('/admin/update', [App\Http\Controllers\AdminPanel\CategoryController::class, 'update'])->name('update');
+
+// my AdminPanle edit
+Route::get('/admin/edit', [App\Http\Controllers\AdminPanel\CategoryController::class, 'edit'])->name('edit');
 
 
 Route::middleware([
