@@ -60,6 +60,10 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
+        $data = Category::find($id);
+        return view('category.show', [
+            'data' => $data
+        ]);
     }
 
     /**
@@ -70,7 +74,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $data = Category::find($id);
+        return view('category.edit', [
+            'data' => $data
+        ]);
+
+//        echo "the id choosenn is :" , $id;
     }
 
     /**
@@ -83,6 +93,14 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = Category::find($id);
+        $data->parent_id = 0;
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->image = $request->image;
+        $data->save();
+        return redirect('/admin/category');
+
     }
 
     /**

@@ -55,21 +55,21 @@
                                                     class="text-secondary text-xs font-weight-bold">{{$rs->description}}</span>
                                             </td>
                                             <td class="align-middle">
-                                                <a href="/admin/category/delete{{$rs->id}}"
+                                                <a href="/admin/category/delete/{{$rs->id}}"
                                                    class="font-weight-bold text-xs btn btn-danger" data-toggle="tooltip"
                                                    data-original-title="Edit user">
                                                     Delete
                                                 </a>
                                             </td>
                                             <td class="align-middle">
-                                                <a href="/admin/category/edit{{$rs->id}}"
+                                                <a href="/admin/category/edit/{{$rs->id}}"
                                                    class="font-weight-bold text-xs btn btn-warning"
                                                    data-toggle="tooltip" data-original-title="Edit user">
                                                     Edit
                                                 </a>
                                             </td>
                                             <td class="align-middle">
-                                                <a href="/admin/category/show{{$rs->id}}"
+                                                <a href="/admin/category/show/{{$rs->id}}"
                                                    class="font-weight-bold text-xs btn btn-info" data-toggle="tooltip"
                                                    data-original-title="Edit user">
                                                     show
@@ -80,6 +80,10 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="btn btn-secondary btn-lg w-100" style="background:#4355b5"><a
+                                        href="/admin/category/create/" style="text-decoration: none;color: white"> Add
+                                        Service</a>
+                                </div>
                             </div>
                         </div>
                     </div>

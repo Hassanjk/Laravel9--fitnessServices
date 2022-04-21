@@ -1,6 +1,6 @@
 @extends('layouts.adminBase')
 
-@section('title', 'MyDashBoard')
+@section('title', 'Edit-Service :'.$data->title)
 
 @section('content')
     <main class="main-content position-relative border-radius-lg ">
@@ -11,18 +11,18 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>Create Service</h6>
+                            <h6>Edit {{$data->title}}</h6>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="p-4 " style="background-color: #646b76 !important;">
-                                <form action="/admin/category/store" method="post">
+                                <form action="/admin/category/update/{{$data->id}}" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-alternative"
                                                        id="exampleFormControlInput1" name="title"
-                                                       placeholder="enter_title">
+                                                       value="{{$data->title}}">
                                             </div>
                                         </div>
                                     </div>
@@ -31,29 +31,21 @@
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-alternative"
                                                        id="exampleFormControlInput1" name="description"
-                                                       placeholder="enter_description">
+                                                       value="{{$data->description}}">
                                             </div>
                                         </div>
                                     </div>
-                                    {{--                                    <div class="row">--}}
-                                    {{--                                        <div class="col-md-12">--}}
-                                    {{--                                            <div class="form-group">--}}
-                                    {{--                                                <input type="text" class="form-control form-control-alternative"--}}
-                                    {{--                                                       id="exampleFormControlInput1" name="month-number"--}}
-                                    {{--                                                       placeholder="enter_month-number">--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
+                                    {{--            removed_using_mothnNumber--}}
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group has-success">
-                                                <input type="file" placeholder="enter-image"
+                                                <input type="file" value="{{$data->image}}"
                                                        class="form-control form-control-alternative is-valid"/>
                                             </div>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-secondary btn-lg w-100"
-                                            style="background:#4355b5">Create
+                                            style="background:#4355b5">Update
                                     </button>
                                 </form>
                             </div>

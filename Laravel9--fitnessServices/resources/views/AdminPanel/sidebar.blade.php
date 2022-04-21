@@ -3,17 +3,17 @@
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
            aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
-           target="_blank">
+        <a class="navbar-brand m-0" href="/admin"
+        >
             <img src="{{asset('assets')}}/admin/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold">Argon Dashboard 2</span>
+            <span class="ms-1 font-weight-bold">Hassan's Dash-Board</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" href="./pages/dashboard.html">
+                <a class="nav-link active" href="/admin/">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -22,12 +22,57 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/tables.html">
+                <a class="nav-link " href="/admin/category">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                        <i class="ni ni-collection text-warning text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Tables</span>
+                    <span class="nav-link-text ms-1">Services</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/admin/users">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-users text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/admin/comment">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-comment text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Comments</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/admin/question">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-question text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">FAQ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/admin/messages">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-mail-bulk text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Mails</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/admin/product">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-th text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Products</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -39,29 +84,21 @@
                     <span class="nav-link-text ms-1">Billing</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link " href="./pages/virtual-reality.html">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Virtual Reality</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="./pages/rtl.html">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">RTL</span>
-                </a>
-            </li>
+
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/profile.html">
+                <a class="nav-link " href="/admin/settings">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-settings text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Settings</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="admin/profile">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
