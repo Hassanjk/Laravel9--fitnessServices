@@ -15,14 +15,15 @@
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="p-4 " style="background-color: #646b76 !important;">
-                                <form action="/admin/category/update/{{$data->id}}" method="post">
+                                <form action="{{route('admin.category.update',['id'=>$data->id])}}" method="post"
+                                      enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-alternative"
                                                        id="exampleFormControlInput1" name="title"
-                                                       value="{{$data->title}}">
+                                                       value="{{$data->title}}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +40,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group has-success">
-                                                <input type="file" value="{{$data->image}}"
+                                                <input type="file" name="image" value="{{$data->image}}"
                                                        class="form-control form-control-alternative is-valid"/>
                                             </div>
                                         </div>

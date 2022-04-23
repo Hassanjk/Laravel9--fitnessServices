@@ -4,7 +4,9 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -46,7 +48,9 @@ class CategoryController extends Controller
         $data->parent_id = 0;
         $data->title = $request->title;
         $data->description = $request->description;
-        $data->image = $request->image;
+        if ($request->file('image')) {
+            $data->image = $request->file('image')->store('images');
+        }
         $data->save();
         return redirect('/admin/category');
     }
@@ -97,7 +101,9 @@ class CategoryController extends Controller
         $data->parent_id = 0;
         $data->title = $request->title;
         $data->description = $request->description;
-        $data->image = $request->image;
+        if ($request->file('image')) {
+            $data->image = $request->file('image')->store('images');
+        }
         $data->save();
         return redirect('/admin/category');
 
@@ -109,8 +115,12 @@ class CategoryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category, $id)
     {
-        //
+        $data = Category::find($id);
+        DB::table('categories')->where('id', '=', $id)->delete();
+        Storage::delete($data->image);
+        return redirect('/admin/category');
+
     }
 }

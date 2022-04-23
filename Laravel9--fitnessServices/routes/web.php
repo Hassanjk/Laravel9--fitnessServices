@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,35 +35,36 @@ Route::get('/', [MyController::class, 'index'])->name('home');
 // this is the rout-controller-view
 Route::get('/Param/{$p}', [MyController::class, 'test'])->name('test');
 
+Route::prefix('admin')->name('admin.')->group(function () {
 // my AdminPanle route
 
-Route::get('/admin', [MyAdminController::class, 'index'])->name('admin');
+    Route::get('/', [MyAdminController::class, 'index'])->name('index');
 
-// my AdminPanle category-list
-Route::get('/admin/category', [MyAdminCategoryController::class, 'index'])->name('category');
+    Route::prefix('category')->name('category.')->controller(MyAdminCategoryController::class)->group(function () {
 
-// my AdminPanle create
-Route::get('/admin/category/create', [MyAdminCategoryController::class, 'create'])->name('create');
+        // my AdminPanle category-list
+        Route::get('/', 'index')->name('index');
 
-// my AdminPanle store
-Route::post('/admin/category/store', [MyAdminCategoryController::class, 'store'])->name('store');
+        // my AdminPanle create
+        Route::get('/create', 'create')->name('create');
 
-// my AdminPanle update
-Route::post('/admin/category/update/{id}', [MyAdminCategoryController::class, 'update'])->name('update');
+        // my AdminPanle store
+        Route::post('/store', 'store')->name('store');
 
-// my AdminPanle edit
-Route::get('/admin/category/edit/{id}', [MyAdminCategoryController::class, 'edit'])->name('edit');
+        // my AdminPanle update
+        Route::post('/update/{id}', 'update')->name('update');
 
-// my Adminpanle show
-Route::get('/admin/category/show/{id}', [MyAdminCategoryController::class, 'show'])->name('show');
+        // my AdminPanle edit
+        Route::get('/edit/{id}', 'edit')->name('edit');
 
+        // my Adminpanle show
+        Route::get('/show/{id}', 'show')->name('show');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+        // my Adminpanle show
+        Route::get('/delete/{id}', 'delete')->name('delete');
+        // my Adminpanle show
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    });
 });
+
+

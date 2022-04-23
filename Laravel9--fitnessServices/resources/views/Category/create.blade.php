@@ -15,14 +15,15 @@
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="p-4 " style="background-color: #646b76 !important;">
-                                <form action="/admin/category/store" method="post">
+                                <form action="{{route('admin.category.store')}}" method="post"
+                                      enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-alternative"
                                                        id="exampleFormControlInput1" name="title"
-                                                       placeholder="enter_title">
+                                                       placeholder="enter_title" required>
                                             </div>
                                         </div>
                                     </div>
@@ -35,19 +36,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{--                                    <div class="row">--}}
-                                    {{--                                        <div class="col-md-12">--}}
-                                    {{--                                            <div class="form-group">--}}
-                                    {{--                                                <input type="text" class="form-control form-control-alternative"--}}
-                                    {{--                                                       id="exampleFormControlInput1" name="month-number"--}}
-                                    {{--                                                       placeholder="enter_month-number">--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group has-success">
-                                                <input type="file" placeholder="enter-image"
+                                                <input type="file" name="image"
                                                        class="form-control form-control-alternative is-valid"/>
                                             </div>
                                         </div>
