@@ -22,13 +22,13 @@
                                             Id
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Parent_id
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Service-name
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Image
-                                        </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Description
                                         </th>
                                         <th class="text-secondary opacity-7"></th>
                                         <th class="text-secondary opacity-7"></th>
@@ -44,6 +44,10 @@
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ \App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs, $rs->title)}}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span
                                                     class="text-secondary text-xs font-weight-bold">{{$rs->title}}</span>
                                             </td>
                                             <td class="align-middle text-center">
@@ -51,10 +55,6 @@
                                                     <img src="{{Storage::url($rs->image)}}"
                                                          class="avatar avatar-sm me-3" alt="didnt load">
                                                 @endif
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">{{$rs->description}}</span>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="{{route('admin.category.destroy',['id'=>$rs->id])}}"

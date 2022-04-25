@@ -4,12 +4,26 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
+    protected $appends = [
+        'getParentsTree'
+    ];
+
+    public static function getParentsTree($category, $title)
+    {
+        if ($category->parent_id == 0) {
+            return $title;
+        }
+        $parent = Category::find($category->parent_id);
+        $title = $parent->title . ' > ' . $title;
+        return CategoryController::getParentsTree($parent, $title);
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +44,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        $data = Category::all();
+        return view('category.create', [
+            'data' => $data
+        ]);
     }
 
     /**
@@ -45,7 +62,7 @@ class CategoryController extends Controller
 
         $data = new Category();
 
-        $data->parent_id = 0;
+        $data->parent_id = $request->parent_id;
         $data->title = $request->title;
         $data->description = $request->description;
         if ($request->file('image')) {
@@ -80,8 +97,10 @@ class CategoryController extends Controller
     {
 
         $data = Category::find($id);
+        $dataList = Category::all();
         return view('category.edit', [
-            'data' => $data
+            'data' => $data,
+            'dataList' => $dataList
         ]);
 
 //        echo "the id choosenn is :" , $id;
@@ -98,7 +117,7 @@ class CategoryController extends Controller
     {
         //
         $data = Category::find($id);
-        $data->parent_id = 0;
+        $data->parent_id = $request->parent_id;
         $data->title = $request->title;
         $data->description = $request->description;
         if ($request->file('image')) {
@@ -118,8 +137,10 @@ class CategoryController extends Controller
     public function destroy(Category $category, $id)
     {
         $data = Category::find($id);
-        DB::table('categories')->where('id', '=', $id)->delete();
-        Storage::delete($data->image);
+        if ($data->image && Storage::disk('public')->exists($data->image)) {
+            Storage::delete($data->image);
+        }
+        $data->delete();
         return redirect('/admin/category');
 
     }

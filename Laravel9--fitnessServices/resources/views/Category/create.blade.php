@@ -18,6 +18,14 @@
                                 <form action="{{route('admin.category.store')}}" method="post"
                                       enctype="multipart/form-data">
                                     @csrf
+                                    <select class="btn dropdown select2 bg-gradient-secondary" name="parent_id"
+                                            style="color:black  ">
+                                        <option value="0" selected="selected">Main Category</option>
+                                        @foreach($data as $rs)
+                                            <option
+                                                value="{{ $rs->id }}"> {{ \App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs, $rs->title)}}</option>
+                                        @endforeach
+                                    </select>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
