@@ -1,7 +1,10 @@
 <?php
+
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\AdminPanel\MyController as MyAdminController;
 use App\Http\Controllers\AdminPanel\CategoryController as MyAdminCategoryController;
+use App\Http\Controllers\AdminPanel\ProductController as MyAdminProductController;
+use App\Http\Controllers\AdminPanel\ImageController as MyAdminImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +68,53 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // my Adminpanle show
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
     });
+    Route::prefix('product')->name('product.')->controller(MyAdminProductController::class)->group(function () {
+
+        // my AdminPanle category-list
+        Route::get('/', 'index')->name('index');
+
+        // my AdminPanle create
+        Route::get('/create', 'create')->name('create');
+
+        // my AdminPanle store
+        Route::post('/store', 'store')->name('store');
+
+        // my AdminPanle update
+        Route::post('/update/{id}', 'update')->name('update');
+
+        // my AdminPanle edit
+        Route::get('/edit/{id}', 'edit')->name('edit');
+
+        // my Adminpanle show
+        Route::get('/show/{id}', 'show')->name('show');
+
+        // my Adminpanle show
+        Route::get('/delete/{id}', 'delete')->name('delete');
+        // my Adminpanle show
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    });
+
+    // for the images
+    Route::prefix('image')->name('image.')->controller(MyAdminImageController::class)->group(function () {
+
+        // my AdminPanle category-list
+        Route::get('/{pid}', 'index')->name('index');
+
+        // my AdminPanle create
+        Route::get('/create/{pid}', 'create')->name('create');
+
+        // my AdminPanle store
+        Route::post('/store/{pid}', 'store')->name('store');
+
+        // my AdminPanle update
+        Route::post('/update/{pid}/{id}', 'update')->name('update');
+
+        Route::get('/delete/{pid}/{id}', 'delete')->name('delete');
+        // my Adminpanle show
+        Route::get('/destroy/{pid}/{id}', 'destroy')->name('destroy');
+    });
+
+
 });
 
 
