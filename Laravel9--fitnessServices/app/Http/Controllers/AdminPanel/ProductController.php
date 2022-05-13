@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $data = Product::all();
+        $data = Category::all();
         return view('product.create', [
             'data' => $data
         ]);
@@ -48,9 +48,8 @@ class ProductController extends Controller
         // Validate the request...
 
         $data = new Product();
-        $data->category_id = $request->category_id;
-        $data->user_id = $request->user_id;
-        $data->category_id = $request->category_id;
+        $data->category_id = $request->parent_id;
+        $data->user_id = 0;
         $data->description = $request->description;
         $data->title = $request->title;
         $data->price = $request->price;
@@ -86,7 +85,7 @@ class ProductController extends Controller
     {
 
         $data = Product::find($id);
-        $dataList = Product::all();
+        $dataList = Category::all();
         return view('product.edit', [
             'data' => $data,
             'dataList' => $dataList
@@ -108,9 +107,8 @@ class ProductController extends Controller
         $data = Product::find($id);
 
         $data = new Product();
-        $data->category_id = $request->category_id;
-        $data->user_id = $request->user_id;
-        $data->parent_id = $request->parent_id;
+        $data->category_id = $request->parent_id;
+        $data->user_id = 0;
         $data->description = $request->description;
         $data->title = $request->title;
         $data->price = $request->price;

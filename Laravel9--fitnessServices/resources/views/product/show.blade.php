@@ -28,12 +28,23 @@
                                 <table class="table align-items-center mb-0">
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Id
+                                            category
                                         </th>
                                         <td class="align-middle ">
-                                            <span class="text-secondary text-xs font-weight-bold">{{$data->id}}</span>
+                                            <span
+                                                class="text-secondary text-xs font-weight-bold">{{$data->category->title}}</span>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Id
+                                        </th>
+                                        <td>
+                                            <span class="text-secondary text-xs font-weight-bold">{{$data->id}}</span>
+
+                                        </td>
+                                    </tr>
+
 
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
