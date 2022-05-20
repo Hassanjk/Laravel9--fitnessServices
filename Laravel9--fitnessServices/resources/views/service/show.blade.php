@@ -15,12 +15,12 @@
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
-                                <a href="{{route('admin.product.edit',['id'=>$data->id])}}"
+                                <a href="{{route('admin.service.edit',['id'=>$data->id])}}"
                                    style="text-decoration: none;color: white">
                                     <div class="btn btn-secondary btn-lg w-25" style="background:#4355b5"> edit
                                     </div>
                                 </a>
-                                <a href="{{route('admin.product.destroy',['id'=>$data->id])}}"
+                                <a href="{{route('admin.service.destroy',['id'=>$data->id])}}"
                                    style="text-decoration: none;color: white">
                                     <div class="btn btn-primary btn-lg w-25" style="background:#f5365c"> Delete Service
                                     </div>

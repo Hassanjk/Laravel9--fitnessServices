@@ -3,7 +3,7 @@
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\AdminPanel\MyController as MyAdminController;
 use App\Http\Controllers\AdminPanel\CategoryController as MyAdminCategoryController;
-use App\Http\Controllers\AdminPanel\ProductController as MyAdminProductController;
+use App\Http\Controllers\AdminPanel\ServiceController as MyAdminServiceController;
 use App\Http\Controllers\AdminPanel\ImageController as MyAdminImageController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,7 +68,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // my Adminpanle show
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
     });
-    Route::prefix('product')->name('product.')->controller(MyAdminProductController::class)->group(function () {
+
+    // serivces starting
+    Route::prefix('service')->name('service.')->controller(MyAdminServiceController::class)->group(function () {
 
         // my AdminPanle category-list
         Route::get('/', 'index')->name('index');
@@ -94,7 +96,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
     });
 
-    // for the images
+    // for the image
     Route::prefix('image')->name('image.')->controller(MyAdminImageController::class)->group(function () {
 
         // my AdminPanle category-list

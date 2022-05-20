@@ -66,7 +66,7 @@ class CategoryController extends Controller
         $data->title = $request->title;
         $data->description = $request->description;
         if ($request->file('image')) {
-            $data->image = $request->file('image')->store('images');
+            $data->image = $request->file('image')->store('image');
         }
         $data->save();
         return redirect('/admin/category');
@@ -121,7 +121,7 @@ class CategoryController extends Controller
         $data->title = $request->title;
         $data->description = $request->description;
         if ($request->file('image')) {
-            $data->image = $request->file('image')->store('images');
+            $data->image = $request->file('image')->store('image');
         }
         $data->save();
         return redirect('/admin/category');

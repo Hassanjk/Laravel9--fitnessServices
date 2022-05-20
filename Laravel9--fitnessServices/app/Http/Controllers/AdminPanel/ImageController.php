@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\AdminPanel;
-
+use App\Models\Category;
+use App\Models\Image;
+use App\Models\Service;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -14,7 +18,13 @@ class ImageController extends Controller
      */
     public function index($pid)
     {
-        //
+        $service = Service::find($pid);
+        $images = DB::table('images')->where('product_id', $pid)->get();
+        return view('image.index', [
+            'service' => $service,
+            'images' => $images
+        ]);
+
     }
 
     /**
@@ -22,10 +32,10 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($pid)
-    {
-        //
-    }
+//    public function create($pid)
+//    {
+//        //
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +45,15 @@ class ImageController extends Controller
      */
     public function store(Request $request, $pid)
     {
-        //
+        $data = new Image();
+        $data->product_id = $pid;
+        $data->title = $request->title;
+        if ($request->file('image')) {
+            $data->image = $request->file('image')->store('images');
+        }
+        $data->save();
+        return redirect()->route('admin.image.index', ['pid' => $pid]);
+
     }
 
     /**
@@ -44,7 +62,7 @@ class ImageController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $pid)
+    public function show($id)
     {
         //
     }
@@ -55,7 +73,7 @@ class ImageController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $pid)
+    public function edit($id)
     {
         //
     }
@@ -67,7 +85,7 @@ class ImageController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $pid)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,8 +96,13 @@ class ImageController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, $pid)
+    public function destroy($pid, $id)
     {
-        //
+        $data = Image::find($id);
+        if ($data->image && Storage::disk('public')->exists($data->image)) {
+            Storage::delete($data->image);
+        }
+        $data->delete();
+        return redirect()->route('admin.image.index', ['pid' => $pid]);
     }
 }

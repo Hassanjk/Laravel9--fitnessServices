@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Models\Service;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ProductController extends Controller
+class ServiceController extends Controller
 {
 
     /**
@@ -18,8 +18,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::all();
-        return view('product.index', [
+
+        $data = Service::all();
+//        var_dump($data);
+        return view('service.index', [
             'data' => $data
         ]);
     }
@@ -32,7 +34,7 @@ class ProductController extends Controller
     public function create()
     {
         $data = Category::all();
-        return view('product.create', [
+        return view('service.create', [
             'data' => $data
         ]);
     }
@@ -47,17 +49,18 @@ class ProductController extends Controller
     {
         // Validate the request...
 
-        $data = new Product();
+        $data = new Service();
         $data->category_id = $request->parent_id;
         $data->user_id = 0;
         $data->description = $request->description;
+        $data->detail = $request->detail;
         $data->title = $request->title;
         $data->price = $request->price;
         if ($request->file('image')) {
-            $data->image = $request->file('image')->store('images');
+            $data->image = $request->file('image')->store('image');
         }
         $data->save();
-        return redirect('/admin/product');
+        return redirect('/admin/service');
     }
 
     /**
@@ -69,8 +72,8 @@ class ProductController extends Controller
     public function show($id)
     {
         //
-        $data = Product::find($id);
-        return view('product.show', [
+        $data = Service::find($id);
+        return view('service.show', [
             'data' => $data
         ]);
     }
@@ -84,9 +87,9 @@ class ProductController extends Controller
     public function edit($id)
     {
 
-        $data = Product::find($id);
+        $data = Service::find($id);
         $dataList = Category::all();
-        return view('product.edit', [
+        return view('service.edit', [
             'data' => $data,
             'dataList' => $dataList
         ]);
@@ -104,19 +107,19 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $data = Product::find($id);
+        $data = Service::find($id);
 
-        $data = new Product();
+        $data = new Service();
         $data->category_id = $request->parent_id;
         $data->user_id = 0;
         $data->description = $request->description;
         $data->title = $request->title;
         $data->price = $request->price;
         if ($request->file('image')) {
-            $data->image = $request->file('image')->store('images');
+            $data->image = $request->file('image')->store('image');
         }
         $data->save();
-        return redirect('/admin/product');
+        return redirect('/admin/service');
 
     }
 
@@ -126,14 +129,14 @@ class ProductController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product, $id)
+    public function destroy(Service $service, $id)
     {
-        $data = Product::find($id);
+        $data = Service::find($id);
         if ($data->image && Storage::disk('public')->exists($data->image)) {
             Storage::delete($data->image);
         }
         $data->delete();
-        return redirect('/admin/product');
+        return redirect('/admin/service');
 
     }
 }

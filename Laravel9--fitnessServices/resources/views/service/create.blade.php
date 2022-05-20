@@ -2,6 +2,12 @@
 
 @section('title', 'MyDashBoard')
 
+{{--text editor plugin--}}
+@section('head')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+@endsection
+
+{{--main content start's from here--}}
 @section('content')
     <main class="main-content position-relative border-radius-lg ">
         @include('AdminPanel.header')
@@ -15,7 +21,7 @@
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="p-4 " style="background-color: #646b76 !important;">
-                                <form action="{{route('admin.product.store')}}" method="post"
+                                <form action="{{route('admin.service.store')}}" method="post"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <select class="btn dropdown select2 bg-gradient-secondary" name="parent_id"
@@ -49,6 +55,23 @@
                                                        id="exampleFormControlInput1" name="description"
                                                        placeholder="enter_description">
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Enter detail info</label>
+                                            <textarea name="detail" class="form-control" id="detail"
+                                                      rows="3"></textarea>
+                                            <script>
+                                                ClassicEditor
+                                                    .create(document.querySelector('#detail'))
+                                                    .then(editor => {
+                                                        console.log(editor);
+                                                    })
+                                                    .catch(error => {
+                                                        console.error(error);
+                                                    });
+                                            </script>
                                         </div>
                                     </div>
                                     <div class="row">

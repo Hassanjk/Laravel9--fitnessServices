@@ -10,8 +10,9 @@ class Category extends Model
     use HasFactory;
 
     // one to many function
-    public function products()
+    public function services()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Service::class);
     }
+
 }

@@ -5125,9 +5125,9 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
              *  typeof document -> undefined
              *
              * react-native:
-             *  navigator.product -> 'ReactNative'
+             *  navigator.service -> 'ReactNative'
              * nativescript
-             *  navigator.product -> 'NativeScript' or 'NS'
+             *  navigator.service -> 'NativeScript' or 'NS'
              */
             function isStandardBrowserEnv() {
                 if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
@@ -21898,7 +21898,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
                      * @category Math
                      * @param {number} multiplier The first number in a multiplication.
                      * @param {number} multiplicand The second number in a multiplication.
-                     * @returns {number} Returns the product.
+                     * @returns {number} Returns the service.
                      * @example
                      *
                      * _.multiply(6, 4);
