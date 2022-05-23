@@ -32,7 +32,7 @@
                                         </th>
                                         <td class="align-middle ">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{$data->category->title}}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{$data->title}}</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -41,6 +41,16 @@
                                         </th>
                                         <td>
                                             <span class="text-secondary text-xs font-weight-bold">{{$data->id}}</span>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            DETAIL INFO
+                                        </th>
+                                        <td>
+                                            <span
+                                                class="text-secondary text-xs font-weight-bold">{!! $data->detail !!}</span>
 
                                         </td>
                                     </tr>

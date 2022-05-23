@@ -23,7 +23,7 @@
 </head>
 
 <body class="bg-white">
-@include('Front-page.header')
+
 
 @yield('content')
 

@@ -34,6 +34,12 @@ Route::get('/', function () {
 // this is the default index page
 Route::get('/', [MyController::class, 'index'])->name('home');
 
+// this is the single package page
+Route::get('/package/{id}', [MyController::class, 'package'])->name('package');
+
+// navigation parent category and children sub categories
+Route::get('/categoryServices/{id}/{slug}', [MyController::class, 'categoryServices'])->name('categoryServices');
+
 
 // this is the rout-controller-view
 Route::get('/Param/{$p}', [MyController::class, 'test'])->name('test');

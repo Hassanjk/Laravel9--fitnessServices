@@ -24,7 +24,6 @@ class ImageController extends Controller
             'service' => $service,
             'images' => $images
         ]);
-
     }
 
     /**
