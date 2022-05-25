@@ -11,4 +11,10 @@ class MyController extends Controller
     {
         return view('AdminPanel.index');
     }
+
+    public function setting()
+    {
+        echo 'its working';
+        exit();
+    }
 }

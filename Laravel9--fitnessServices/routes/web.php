@@ -49,7 +49,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/', [MyAdminController::class, 'index'])->name('index');
 
+    Route::get('/setting', [MyAdminController::class, 'setting'])->name('setting');
+
     Route::prefix('category')->name('category.')->controller(MyAdminCategoryController::class)->group(function () {
+
 
         // my AdminPanle category-list
         Route::get('/', 'index')->name('index');
