@@ -1,6 +1,9 @@
 @extends('layouts.front-base')
 
-@section('title', 'Fitness-Services')
+@section('title', $setting->title)
+@section('description', $setting->description)
+@section('keywords', $setting->keywords)
+@section('icon', 'Fitness-icon')
 
 @include('Front-page.header')
 @section('content')

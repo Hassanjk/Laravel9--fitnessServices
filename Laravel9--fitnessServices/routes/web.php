@@ -33,6 +33,10 @@ Route::get('/', function () {
 });
 // this is the default index page
 Route::get('/', [MyController::class, 'index'])->name('home');
+Route::get('/about', [MyController::class, 'about'])->name('about');
+Route::get('/references', [MyController::class, 'references'])->name('references');
+Route::get('/contact', [MyController::class, 'contact'])->name('contact');
+Route::post('/storemessage', [MyController::class, 'storemessage'])->name('storemessage');
 
 // this is the single package page
 Route::get('/package/{id}', [MyController::class, 'package'])->name('package');
@@ -50,9 +54,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [MyAdminController::class, 'index'])->name('index');
 
     Route::get('/setting', [MyAdminController::class, 'setting'])->name('setting');
+    Route::post('/setting/update', [MyAdminController::class, 'settingUpdate'])->name('setting');
 
     Route::prefix('category')->name('category.')->controller(MyAdminCategoryController::class)->group(function () {
-
 
         // my AdminPanle category-list
         Route::get('/', 'index')->name('index');

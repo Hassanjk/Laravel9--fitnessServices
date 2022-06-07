@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Setting;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
 use App\Models\Service;
@@ -21,12 +23,67 @@ class MyController extends Controller
     {
         $sliderData = Service::limit(4)->get();
         $packagesData = Service::limit(4)->get();
+        $setting = Setting::first();
 
         return view("front-page.index", [
+            'setting' => $setting,
             'sliderData' => $sliderData,
             'packagesData' => $packagesData
         ]);
     }
+
+//about
+    public function about()
+    {
+//        echo 'about';
+//        exit();
+
+        $sliderData = Service::limit(4)->get();
+        $setting = Setting::first();
+        return view("front-page.about", [
+            'setting' => $setting,
+            'sliderData' => $sliderData
+
+        ]);
+    }
+
+    //references
+    public function references()
+    {
+        echo "references";
+        exit();
+        $setting = Setting::first();
+        return view("front-page.references", [
+            'setting' => $setting
+        ]);
+    }
+
+    //contact
+    public function contact()
+    {
+        $setting = Setting::first();
+        return view("front-page.contact", [
+            'setting' => $setting
+        ]);
+    }
+
+    //storemessage
+    public function storemessage(Request $request)
+    {
+
+//        dd($request);
+        $data = new Message();
+        $data->name = $request->input('name');
+        $data->email = $request->input('email');
+        $data->phone = $request->input('phone');
+        $data->message = $request->input('message');
+        $data->ip = request()->ip();
+        $data->save();
+
+        return redirect()->route('contact')->with('info', 'your message has been sent, Thank you');
+
+    }
+
 
 //    this is just for one single package
 
