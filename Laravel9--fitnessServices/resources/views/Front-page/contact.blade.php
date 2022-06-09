@@ -48,7 +48,7 @@
                         frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             </div>
             <div class="col-md-6 pb-5">
-                <h2>{{Session::get('info')}}</h2>
+                <h2>@include('Front-page.messages')</h2>
                 <div class="contact-form">
                     <div id="success"></div>
                     <form action="{{route('storemessage')}}" enctype="multipart/form-data" method="post">

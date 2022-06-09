@@ -61,33 +61,41 @@
 
             <div class="col-12">
                 <h3 class="mb-4 font-weight-bold">Leave a comment</h3>
-                <form>
+                <h2>@include('Front-page.messages')</h2>
+                <form action="{{route('storecomment')}}" method="post">
+                    @csrf
+                    <input type="hidden" class="form-control" name="product_id" id="name" value="{{$data->id}}">
                     <div class="form-group">
-                        <label for="name">Name *</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="website">Website</label>
-                        <input type="url" class="form-control" id="website">
+                        <label for="name">subject *</label>
+                        <input type="text" class="form-control" name="subject" id="name">
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                        <label for="name">rating *</label>
+                        <input type="text" class="form-control" name="rate" id="name">
+                    </div>
+                    {{--                    <div class="form-group">--}}
+                    {{--                        <label for="email">rating *</label>--}}
+                    {{--                        <input type="email" class="form-control" id="email">--}}
+                    {{--                    </div>--}}
+
+                    <div class="form-group">
+                        <label for="message">review *</label>
+                        <textarea name="review" id="message" cols="30" rows="5" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Leave Comment" class="btn btn-outline-primary px-3">
+                        @auth()
+                            <input type="submit" value="submit" class="btn btn-outline-primary px-3">
+                        @else
+                            <a href="/login" class="primary-btn" role="button">To submit Your Review,Please login</a>
+                        @endauth
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <!-- Blog Detail End -->
-
+    {{--i will have to add a review page here--}}
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-outline-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>

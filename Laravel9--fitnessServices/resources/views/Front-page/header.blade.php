@@ -11,8 +11,17 @@
             <div class="navbar-nav ml-auto p-4 bg-secondary">
                 <a href="{{route('home')}}" class="nav-item nav-link active">Home</a>
                 <a href="about.html" class="nav-item nav-link">About Us</a>
-                <a href="feature.html" class="nav-item nav-link">Our Features</a>
-                <a href="class.html" class="nav-item nav-link">Classes</a>
+                @auth
+                    {{--                    : {{Auth::user()->name}}--}}
+                    <a href="/logoutuser" class="nav-item nav-link">log-out</a>
+
+                @endauth
+
+                @guest()
+                    <a href="/registeruser" class="nav-item nav-link">register</a>
+                @endguest
+
+                <a href="{{route('faq')}}" class="nav-item nav-link">faq</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu text-capitalize">
@@ -61,7 +70,8 @@
                     <h3 class="text-primary text-capitalize m-0">Gym & Fitness Center</h3>
                     <h2 class="display-2 m-0 mt-2 mt-md-4 text-white font-weight-bold text-capitalize">Best Gym In
                         Town</h2>
-                    <a href="" class="btn btn-lg btn-outline-light mt-3 mt-md-5 py-md-3 px-md-5">Join Us Now</a>
+                    <a href="/registeruser" class="btn btn-lg btn-outline-light mt-3 mt-md-5 py-md-3 px-md-5">Join Us
+                        Now</a>
                 </div>
             @endforeach
         </div>

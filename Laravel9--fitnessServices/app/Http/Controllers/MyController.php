@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Faq;
 use App\Models\Setting;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
 use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MyController extends Controller
@@ -67,6 +70,17 @@ class MyController extends Controller
         ]);
     }
 
+    //faq
+    public function faq()
+    {
+        $setting = Setting::first();
+        $datalist = Faq::all();
+        return view("front-page.faq", [
+            'setting' => $setting,
+            'datalist' => $datalist
+        ]);
+    }
+
     //storemessage
     public function storemessage(Request $request)
     {
@@ -84,6 +98,24 @@ class MyController extends Controller
 
     }
 
+    //storecomment
+    public function storecomment(Request $request)
+    {
+
+//        dd($request);
+        $data = new Comment();
+        $data->user_id = Auth::id();
+        $data->product_id = $request->input('product_id');
+        $data->subject = $request->input('subject');
+        $data->rate = $request->input('rate');
+        $data->review = $request->input('review');
+        $data->ip = request()->ip();
+        $data->save();
+
+        return redirect()->route('package', ['id' => $request->input('product_id')])->with('info', 'your message has been sent, Thank you');
+
+    }
+
 
 //    this is just for one single package
 
@@ -92,9 +124,11 @@ class MyController extends Controller
 
         $data = Service::find($id);
         $images = DB::table('images')->where('product_id', $id)->get();
+        $review = Comment::where('product_id', $id)->get();
         return view('front-page.package', [
             'data' => $data,
-            'images' => $images
+            'images' => $images,
+            'review' => $review
 
         ]);
 
@@ -124,5 +158,18 @@ class MyController extends Controller
     public function Param($p)
     {
         echo "it is " . $p . "yeah";
+    }
+
+    public function logout(Request $request)
+    {
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+
     }
 }

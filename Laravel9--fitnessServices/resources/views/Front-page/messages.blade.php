@@ -1,7 +1,7 @@
+
 @if($message = Session::get('success'))
     <div class="alert alert-success alert-block">
         <button type="button" class="close" data-dissmiss="alert">x</button>
-
     </div>
 @endif
 
@@ -15,6 +15,7 @@
     </div>
 @endif
 
+
 {{--code for warning message--}}
 @if($message = Session::get('warning'))
 
@@ -24,6 +25,7 @@
     </div>
 @endif
 
+
 {{--code for warning message--}}
 @if($message = Session::get('info'))
 
@@ -32,5 +34,17 @@
         <strong>{{$message}}
     </div>
 
+@endif
+
+
+@if ($errors->any())
+
+    <div class="alert alert-danger">
+
+        <button type="button" class="close" data-dismiss="alert"></button>
+
+        Check the following errors :(
+
+    </div>
 
 @endif

@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminPanel\MyController as MyAdminController;
 use App\Http\Controllers\AdminPanel\CategoryController as MyAdminCategoryController;
 use App\Http\Controllers\AdminPanel\ServiceController as MyAdminServiceController;
 use App\Http\Controllers\AdminPanel\ImageController as MyAdminImageController;
+use App\Http\Controllers\AdminPanel\MessagesController as MessageController;
+use App\Http\Controllers\AdminPanel\FaqController as MyAdminFaqController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +39,13 @@ Route::get('/about', [MyController::class, 'about'])->name('about');
 Route::get('/references', [MyController::class, 'references'])->name('references');
 Route::get('/contact', [MyController::class, 'contact'])->name('contact');
 Route::post('/storemessage', [MyController::class, 'storemessage'])->name('storemessage');
+Route::post('/storecomment', [MyController::class, 'storecomment'])->name('storecomment');
+Route::get('/faq', [MyController::class, 'faq'])->name('faq');
+//login credentials
+Route::view('/loginuser', 'front-page.login');
+Route::view('/registeruser', 'front-page.register');
+Route::get('/logoutuser', [MyController::class, 'logout'])->name('logout');
+
 
 // this is the single package page
 Route::get('/package/{id}', [MyController::class, 'package'])->name('package');
@@ -128,7 +137,47 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // my Adminpanle show
         Route::get('/destroy/{pid}/{id}', 'destroy')->name('destroy');
     });
+    Route::prefix('message')->name('message.')->controller(MessageController::class)->group(function () {
 
+        // my AdminPanle category-list
+        Route::get('/', 'index')->name('index');
+
+        // my AdminPanle update
+        Route::post('/update/{id}', 'update')->name('update');
+
+        // my Adminpanle show
+        Route::get('/show/{id}', 'show')->name('show');
+
+        // my Adminpanle show
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    });
+
+    // faq starting
+    Route::prefix('faq')->name('faq.')->controller(MyAdminFaqController::class)->group(function () {
+
+        // my AdminPanle category-list
+        Route::get('/', 'index')->name('index');
+
+        // my AdminPanle create
+        Route::get('/create', 'create')->name('create');
+
+        // my AdminPanle store
+        Route::post('/store', 'store')->name('store');
+
+        // my AdminPanle update
+        Route::post('/update/{id}', 'update')->name('update');
+
+        // my AdminPanle edit
+        Route::get('/edit/{id}', 'edit')->name('edit');
+
+        // my Adminpanle show
+        Route::get('/show/{id}', 'show')->name('show');
+
+        // my Adminpanle show
+        Route::get('/delete/{id}', 'delete')->name('delete');
+        // my Adminpanle show
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    });
 
 });
 
